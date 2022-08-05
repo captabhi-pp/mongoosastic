@@ -49,7 +49,6 @@ function mongoosastic(
 
   schema.static('createMapping', createMapping)
   schema.static('getMapping', () => {
-    console.log('Running mapping');
     return generator.generateMapping(schema)
   })
   schema.static('getCleanTree', () => {
