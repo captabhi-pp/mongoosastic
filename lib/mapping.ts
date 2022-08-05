@@ -324,7 +324,7 @@ export default class Generator {
     // @ts-ignore
     delete cleanTree[schema.get('versionKey')]
     const mapping = getMapping(cleanTree, '')
-    console.log('mapping:- ', mapping);
+
     return { properties: mapping }
   }
 
