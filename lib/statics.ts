@@ -9,7 +9,8 @@ import { filterMappingFromMixed, getIndexName } from './utils'
 
 export async function createMapping(
   this: MongoosasticModel<MongoosasticDocument>,
-  body: IndicesCreateRequest['body']
+  body: IndicesCreateRequest['body'],
+  customFieldsMapping: any
 ): Promise<Record<PropertyName, MappingProperty>> {
   const options = this.esOptions()
   const client = this.esClient()
@@ -34,6 +35,8 @@ export async function createMapping(
     index: indexName,
   })
 
+  completeMapping.properties = {...completeMapping.properties, ...customFieldsMapping}
+  
   if (exists.body) {
     await client.indices.putMapping({
       index: indexName,

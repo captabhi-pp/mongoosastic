@@ -144,7 +144,7 @@ declare interface MongoosasticDocument<TDocument = any> extends Document<TDocume
 interface MongoosasticModel<T> extends Model<T> {
   bulkError(): EventEmitter;
 
-  createMapping(body?: IndicesCreateRequest['body']): Promise<Record<PropertyName, MappingProperty>>;
+  createMapping(body?: IndicesCreateRequest['body'], customFieldsMapping?: any): Promise<Record<PropertyName, MappingProperty>>;
 
   esClient(): Client;
 
