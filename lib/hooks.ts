@@ -20,7 +20,7 @@ export async function postSave(doc: MongoosasticDocument): Promise<void> {
   const populate = options && options.populate
   if (doc) {
     if (populate && populate.length) {
-      const popDoc = await doc.populate(populate)
+      const popDoc = await doc.populate(populate).execPopulate()
       popDoc
         .index()
         .then((res) => onIndex(null, res))
