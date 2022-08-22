@@ -109,6 +109,7 @@ declare type Options = {
   index?: string;
   indexAutomatically?: boolean;
   populate?: PopulateOptions[];
+  runBeforeIndexing?: (doc: any) => any;
   properties?: any;
   routing?: RoutingFn;
   saveOnSynchronize?: boolean;

@@ -18,9 +18,13 @@ export async function postSave(doc: MongoosasticDocument): Promise<void> {
   }
 
   const populate = options && options.populate
+  const { runBeforeIndexing = null } = options
   if (doc) {
     if (populate && populate.length) {
-      const popDoc = await doc.populate(populate).execPopulate()
+      let popDoc = await doc.populate(populate).execPopulate()
+      if(runBeforeIndexing) {
+        popDoc = runBeforeIndexing(popDoc)
+      }
       popDoc
         .index()
         .then((res) => onIndex(null, res))
